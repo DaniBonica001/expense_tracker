@@ -1,9 +1,10 @@
 import './ExpenseItem.css';
+import ExpenseDate from './ExpenseDate';
 
 function ExpenseItem({item}) {
   return (
     <div className='expense-item'>
-      <div>{item.date.toISOString()}</div>
+      <ExpenseDate date={item.date}/>
       <div className='expense-item__description'>
         <h2>{item.description}</h2>
         <div className='expense-item__price'>${item.price}</div>
