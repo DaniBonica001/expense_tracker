@@ -1,5 +1,6 @@
 import Expenses from "./components/Expenses/Expenses";
 import AddExpense from "./components/AddExpense/AddExpense";
+import { useState } from "react";
 
 function App() {
   const expenses = [
@@ -29,10 +30,23 @@ function App() {
     },
   ];
 
+  const [dataExpenses, setDataExpenses] = useState(expenses);
+  console.log(dataExpenses)
+
+  const handleSaveExpense = (expenseData) =>{
+    const expense = {
+      id: Math.floor(Math.random()*10000000000000),
+      ...expenseData      
+    }
+    console.log(expense);
+    console.log(expenses);
+
+    setDataExpenses([...expenses,expense])
+  }
   return (
     <div>      
-      <AddExpense/>
-      <Expenses expenses={expenses} />
+      <AddExpense onSaveExpense={handleSaveExpense}/>
+      <Expenses expenses={dataExpenses} />
     </div>
   );
 }

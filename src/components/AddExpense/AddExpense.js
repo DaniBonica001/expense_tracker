@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import "./ExpenseForm.css";
 
-function AddExpense() {
+function AddExpense(props) {
   const {register, handleSubmit,reset} = useForm({
     defaultValues: {
       description: "",
@@ -14,8 +14,14 @@ function AddExpense() {
   });
 
   const onSubmit = (data) => {
-    console.log("submit");
-    console.log(data);
+    //console.log("submit");
+    //console.log(data);
+    const expense = {
+      description: data.description,
+      price: data.price,
+      date: new Date(data.date)
+    }
+    props.onSaveExpense(expense);
     reset();
     
     
