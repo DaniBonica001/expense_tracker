@@ -29,7 +29,7 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
-
+  
   const [dataExpenses, setDataExpenses] = useState(initialExpenses);
   console.log(dataExpenses);
 
@@ -41,10 +41,8 @@ function App() {
 
     setDataExpenses((prevDataExpenses) => {
       return [expense,...prevDataExpenses];
-    });
+    });    
   };
-
-  
 
   return (
     <div>

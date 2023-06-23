@@ -1,11 +1,12 @@
 import Card from "../UI/Card";
 import { useForm } from "react-hook-form";
 
-
 import "./ExpenseForm.css";
+import { useState } from "react";
 
 function AddExpense(props) {
-  const {register, handleSubmit,reset} = useForm({
+  const [isAdding, setIsAdding] = useState(false)
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       description: "",
       price: "",
@@ -19,13 +20,27 @@ function AddExpense(props) {
     const expense = {
       description: data.description,
       price: data.price,
-      date: new Date(data.date)
-    }
+      date: new Date(data.date),
+    };
     props.onSaveExpense(expense);
     reset();
-    
-    
+    setIsAdding(false)
   };
+
+  const handleChangeView = (event) =>{
+    //console.log(event)
+    setIsAdding(true)
+  }
+
+  const handleCancel = () =>{
+    setIsAdding(false)
+  }
+
+  if (isAdding === false){
+    return <Card className="new-expense">
+      <button type="submit" onClick={handleChangeView}>Add Expense</button>
+    </Card>
+  }
 
   return (
     <Card className="new-expense">
@@ -64,9 +79,8 @@ function AddExpense(props) {
         </div>
 
         <div className="new-expense__actions">
-          <button type="submit">
-            Add Expense
-          </button>
+          <button type="button" onClick={handleCancel}>Cancel</button>
+          <button type="submit">Add Expense</button>
         </div>
       </form>
     </Card>
