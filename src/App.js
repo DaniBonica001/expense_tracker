@@ -31,7 +31,7 @@ function App() {
   ];
   
   const [dataExpenses, setDataExpenses] = useState(initialExpenses);
-  console.log(dataExpenses);
+  //console.log(dataExpenses);
 
   const handleSaveExpense = (expenseData) => {
     const expense = {
