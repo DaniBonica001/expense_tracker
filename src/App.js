@@ -3,49 +3,52 @@ import AddExpense from "./components/AddExpense/AddExpense";
 import { useState } from "react";
 
 function App() {
-  const expenses = [
+  const initialExpenses = [
     {
-      id: "e1",
+      id: 1,
       description: "Toilet Paper",
       price: 94.12,
       date: new Date(2020, 7, 14),
     },
-    { 
-      id: "e2", 
-      description: "New TV", 
-      price: 799.49, 
-      date: new Date(2021, 2, 12) 
+    {
+      id: 2,
+      description: "New TV",
+      price: 799.49,
+      date: new Date(2021, 2, 12),
     },
     {
-      id: "e3",
+      id: 3,
       description: "Car Insurance",
       price: 294.67,
       date: new Date(2021, 2, 28),
     },
     {
-      id: "e4",
+      id: 4,
       description: "New Desk (Wooden)",
       price: 450,
       date: new Date(2021, 5, 12),
     },
   ];
 
-  const [dataExpenses, setDataExpenses] = useState(expenses);
-  console.log(dataExpenses)
+  const [dataExpenses, setDataExpenses] = useState(initialExpenses);
+  console.log(dataExpenses);
 
-  const handleSaveExpense = (expenseData) =>{
+  const handleSaveExpense = (expenseData) => {
     const expense = {
-      id: Math.floor(Math.random()*10000000000000),
-      ...expenseData      
-    }
-    console.log(expense);
-    console.log(expenses);
+      id: (dataExpenses.length + 1),
+      ...expenseData,
+    };
 
-    setDataExpenses([...expenses,expense])
-  }
+    setDataExpenses((prevDataExpenses) => {
+      return [expense,...prevDataExpenses];
+    });
+  };
+
+  
+
   return (
-    <div>      
-      <AddExpense onSaveExpense={handleSaveExpense}/>
+    <div>
+      <AddExpense onSaveExpense={handleSaveExpense} />
       <Expenses expenses={dataExpenses} />
     </div>
   );
