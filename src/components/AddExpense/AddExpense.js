@@ -19,7 +19,7 @@ function AddExpense(props) {
     //console.log(data);
     const expense = {
       description: data.description,
-      price: data.price,
+      price: +data.price,
       date: new Date(data.date),
     };
     props.onSaveExpense(expense);
